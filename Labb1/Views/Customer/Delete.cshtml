@@ -1,0 +1,19 @@
+﻿@model Customer
+
+
+<h1>Ta bort kund</h1>
+
+@*<p>@Model.FirstName</p>*@
+
+<form>
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <div class="form-group">
+                <a asp-action="Delete" asp-route-id="@Model.CustomerId" btn btn-primary w-100">Ta bort kund</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <a asp-action="Index" class="btn btn-secondary w-100">Se alla kunder</a>
+        </div>
+    </div>
+</form>

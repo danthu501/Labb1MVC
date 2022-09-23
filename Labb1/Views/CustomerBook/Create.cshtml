@@ -1,0 +1,33 @@
+﻿@model CustomerBook
+<div class="row">
+    <div class="col-md-6 offset-1-md-3">
+        <h3>Ange LåneID</h3>
+        <form asp-action="Create" autocomplete="on">
+            <input type="hidden" asp-for="CustomerBookId" />
+            <input type="hidden" asp-for="LoanDate" />
+            <input type="hidden" asp-for="ReturnDate" />
+            <input type="hidden" asp-for="BookId" />
+            
+             
+
+            <h3></h3>
+            <div class="form-group">
+                <input asp-for="CustomerId" class="form-control" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="submit" value="submit" class="btn btn-primary w-100" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <a asp-controller="Book" asp-action="Index" class="btn btn-secondary w-100">Se alla böcker</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

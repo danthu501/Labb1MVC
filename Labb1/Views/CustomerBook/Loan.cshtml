@@ -1,0 +1,33 @@
+﻿@using Labb1.ViewModels
+
+@model CustomerBooksViewModel
+
+
+
+@foreach (var item in Model.CustomerBook)
+{
+    var test = Model.Books.Where(i => i.BookId ==item.BookId);
+    @foreach (var items in test)
+    {
+       <div class="col-lg-12">
+        <h3>@items.Title</h3>
+        @if (items.Avalible)
+        {
+            <p>Boken är återlämnad</p>
+        }
+        @if (!items.Avalible)
+        {
+            <p>Boken är inte återlämnad</p>        
+        }
+        <div class="col-12">
+        <img src="@items.ImageUrl">
+        </div>
+        <p>Återlämmnings Datum @item.ReturnDate </p>
+        </div>
+    }
+}
+
+
+
+
+
