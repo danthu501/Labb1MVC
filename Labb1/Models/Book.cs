@@ -17,6 +17,5 @@ namespace Labb1.Models
         public string ImageUrl { get; set; }
         public ICollection<CustomerBook> CustomerBooks { get; set; }
 
-        //https://www.youtube.com/watch?v=E7Voso411Vs&ab_channel=ProgrammingwithMosh
     }
 }

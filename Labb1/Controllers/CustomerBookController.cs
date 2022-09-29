@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Net;
 using static System.Reflection.Metadata.BlobBuilder;
@@ -31,7 +32,6 @@ namespace Labb1.Controllers
             var customer = _appDbContext.Customers.FirstOrDefault(i => i.CustomerId ==id);
             IEnumerable<CustomerBook> customerBooks = _appDbContext.CustomerBooks.Where(f => f.CustomerId ==id).ToList();
             IEnumerable<Book> books = _appDbContext.Books.ToList();
-            
 
             var CustomerBooksViewModel = new CustomerBooksViewModel
             {
@@ -46,21 +46,29 @@ namespace Labb1.Controllers
 
         public IActionResult Create(int id)
         {
-            var test = new CustomerBook()
+            var customerBook = new CustomerBook()
             {
                 BookId = id
             };
-            return View(test);
+            IEnumerable<Customer> customers = _appDbContext.Customers.ToList();
+
+            var CustomerViewModel = new CustomerViewModel()
+            {
+                customers = customers,
+                CustomerBook = customerBook,
+            };
+
+            return View(CustomerViewModel);
         }
         [HttpPost]
-        public IActionResult Create(CustomerBook customerBook)
+        public IActionResult Create(CustomerViewModel CustomerViewModel)
         {
-            var loanDate  = customerBook.LoanDate=DateTime.Now;
-            customerBook.ReturnDate= loanDate.AddDays(30);
-            _appDbContext.CustomerBooks.Add(customerBook);
+            var loanDate = CustomerViewModel.CustomerBook.LoanDate=DateTime.Now;
+            CustomerViewModel.CustomerBook.ReturnDate= loanDate.AddDays(30);
+            _appDbContext.Add(CustomerViewModel.CustomerBook);
             _appDbContext.SaveChanges();
 
-            return View();
+            return View("Checkouted");
         }
     }
 }

@@ -1,23 +1,23 @@
-﻿@model CustomerBook
+﻿@model CustomerViewModel
+
 <div class="row">
     <div class="col-md-6 offset-1-md-3">
         <h3>Ange LåneID</h3>
-        <form asp-action="Create" autocomplete="on">
-            <input type="hidden" asp-for="CustomerBookId" />
-            <input type="hidden" asp-for="LoanDate" />
-            <input type="hidden" asp-for="ReturnDate" />
-            <input type="hidden" asp-for="BookId" />
-            
-             
+        <form asp-controller="CustomerBook" asp-action="Create" autocomplete="on">
+            <input type="hidden" asp-for="CustomerBook.CustomerBookId" />
+            <input type="hidden" asp-for="CustomerBook.LoanDate" />
+            <input type="hidden" asp-for="CustomerBook.ReturnDate" />
+            <input type="hidden" asp-for="CustomerBook.BookId" />
 
-            <h3></h3>
             <div class="form-group">
-                <input asp-for="CustomerId" class="form-control" />
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            <label >Välj Låntagare</label>
+            <select asp-for="@Model.CustomerBook.CustomerId" class="form-select form-select-lg" aria-label=".form-select-lg">
+            @foreach (var item in Model.customers)
+            {
+                <option value="@item.CustomerId">@item.FirstName @item.LastName </option>
+            }
+            </select>
             </div>
-
-
-
             <div class="row mt-2">
                 <div class="col-md-6">
                     <div class="form-group">

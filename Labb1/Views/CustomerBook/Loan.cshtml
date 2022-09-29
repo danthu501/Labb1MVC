@@ -2,6 +2,24 @@
 
 @model CustomerBooksViewModel
 
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Returned
+        </th>
+        <th>
+            Images
+        </th>
+        <th>
+            Återlämmnings Datum
+        </th>
+    </tr>
 
 
 @foreach (var item in Model.CustomerBook)
@@ -9,23 +27,42 @@
     var test = Model.Books.Where(i => i.BookId ==item.BookId);
     @foreach (var items in test)
     {
-       <div class="col-lg-12">
-        <h3>@items.Title</h3>
-        @if (items.Avalible)
-        {
-            <p>Boken är återlämnad</p>
-        }
-        @if (!items.Avalible)
-        {
-            <p>Boken är inte återlämnad</p>        
-        }
-        <div class="col-12">
-        <img src="@items.ImageUrl">
-        </div>
-        <p>Återlämmnings Datum @item.ReturnDate </p>
-        </div>
+            <tbody>
+                <tr>
+                    <td>
+                        @items.Title
+                    </td>
+
+                    <td>
+                        @items.Author
+                    </td>
+               <td>
+                        @if (items.Avalible)
+                        {
+                            <p>Boken är återlämnad</p>
+                        }
+                        @if (!items.Avalible)
+                        {
+                            <p>Boken är inte återlämnad</p>
+                        }
+               </td>
+               <td>
+                        <img src="@items.ImageUrl">
+               </td>
+               
+                <td>
+                        <p>@item.ReturnDate </p>
+                </td>
+                
+
+                </tr>
+            </tbody>
+     
+
+       
     }
 }
+</table>
 
 
 

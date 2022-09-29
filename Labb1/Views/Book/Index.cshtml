@@ -2,8 +2,7 @@
 
 <div class="container">
     <div>
-        <h1>Kunder</h1>
-        <a class="btn btn-primary" asp-controller="Book" asp-action="Index">Lägg till ny bok</a>
+        <h1>Böcker</h1>
         <table class="table">
             <tr>
                 <th>
@@ -12,11 +11,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Author)
                 </th>
-     
                 <th>
-                    Image
+                    Bilder
                 </th>
-
             </tr>
 
 
@@ -35,19 +32,11 @@
                             <img src="@item.ImageUrl" alt="book"/>
                         </td>
                         <td>
-                            
                             <a class="btn btn-primary" asp-controller="CustomerBook" asp-action="create" asp-route-id="@item.BookId"> Låna bok</a>
-
                         </td>
-
                     </tr>
                 }
-
-
-
             </tbody>
-
         </table>
-
     </div>
 </div>
